@@ -1,0 +1,16 @@
+civitai:
+  api_token: "xxxxxxxxxxxxxxxxxxxxxxxxxxxxx" # https://education.civitai.com/civitais-guide-to-downloading-via-api/
+  base_url: "https://civitai.com/api/v1/images" # https://developer.civitai.com/docs/api/public-rest#get-apiv1images
+  query_params:
+    sort: "Newest" # Newest, Most Reactions, Most Comments
+    period: "Month" # AllTime, Year, Month, Week, Day
+    limit: 10 # Change based on how often the script runs (rule of thumb: 10 images if runs every hour)
+    nsfw: "X" # None, Soft, Mature, X
+
+telegram:
+  bot_token: "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx" # Obtained from @BotFather on Telegram after creating a new bot
+  chat_id: "xxxxxxxxx" # Your Telegram user ID, obtained from @RawDataBot on Telegram, needs to /start a conversation with your bot first
+
+users: # Users to monitor
+  - "xxxxxxxxx"
+  - "xxxxxxxxx"
