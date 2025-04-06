@@ -5,6 +5,7 @@ import glob
 from model import image
 import os
 from typing import List # Retrocompatibility with older versions of Python (Raspberry Pi 3.7)
+from pathlib import Path
 
 def save_new_log(images: List[image.Image], username):
     timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
@@ -32,7 +33,8 @@ def create_log_json(images: List[image.Image]):
 
 def get_last_saved_log(username):
     # Get all log files for this username
-    log_pattern = os.path.join('logs', f'{username}_*.json')
+    log_path = Path(__file__).parent / 'logs'
+    log_pattern = os.path.join(log_path, f'{username}_*.json')
     log_files = glob.glob(log_pattern)
     if not log_files:
         return None
