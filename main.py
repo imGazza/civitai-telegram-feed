@@ -27,6 +27,8 @@ async def main():
         # Saving new log of fetched images only when the sending process is successful
         io.save_new_log(current_user_images, username)
 
+    logger.info("Finished script execution")
+
 def fetch_data(username):
     logger.info(f'Fetching images for {username}')
     current_user_images = civitai.retrieve_user_images(username)
