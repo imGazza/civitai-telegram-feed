@@ -11,9 +11,7 @@ def setup_cron():
         
         # Create the shell script
         shell_content = f'''#!/bin/bash
-SCRIPT_DIR="{script_dir}"
-pip3 install -r "$SCRIPT_DIR/requirements.txt"
-python3 "$SCRIPT_DIR/main.py"
+python3 "../main.py"
 '''
         
         with open(shell_script, 'w') as f:
