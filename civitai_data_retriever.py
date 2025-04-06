@@ -34,12 +34,13 @@ def translate_result(json_result):
     return images
 
 def create_image(json_item):
+    meta = json_item.get('meta', {})
     return image.Image(
         id=json_item['id'], 
         url=json_item['url'], 
         createdAt=json_item['createdAt'],
-        size=json_item['meta']['Size'],
-        prompt=json_item['meta']['prompt'], 
-        negativePrompt=json_item['meta']['negativePrompt'], 
+        size=meta.get('Size', 'Unknown'),
+        prompt=meta.get('prompt', 'Unknown'), 
+        negativePrompt=meta.get('negativePrompt', 'Unknown'), 
         username=json_item['username'], 
-        model=json_item['meta']['Model'])
+        model=meta.get('Model', 'Unknown'))
