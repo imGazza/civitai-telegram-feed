@@ -1,3 +1,4 @@
+from dataclasses import asdict
 import requests
 from model import image
 from config_reader import get_config
@@ -28,13 +29,13 @@ def get_from_civitai(username):
 
 def translate_result(json_result):
     images = []
-    for item in json_result.get('items'):
+    for item in sorted(json_result.get('items'), key=lambda x: x['id'], reverse=False):
         images.append(create_image(item))
 
     return images
 
 def create_image(json_item):
-    meta = json_item.get('meta', {})
+    meta = json_item.get('meta') or {}
     return image.Image(
         id=json_item['id'], 
         url=json_item['url'], 
