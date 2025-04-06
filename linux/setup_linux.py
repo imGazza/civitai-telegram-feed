@@ -26,8 +26,13 @@ python3 "$SCRIPT_DIR/main.py"
         # Create cron job
         cron_command = f"0 * * * * {shell_script}\n"
         
-        # Add to crontab
-        current_crontab = subprocess.check_output(['crontab', '-l']).decode()
+        try:
+            # Try to get current crontab
+            current_crontab = subprocess.check_output(['crontab', '-l']).decode()
+        except subprocess.CalledProcessError:
+            # If no crontab exists, start with empty one
+            current_crontab = ""
+        
         if str(shell_script) not in current_crontab:
             new_crontab = current_crontab + cron_command
             subprocess.run(['crontab', '-'], input=new_crontab.encode())
