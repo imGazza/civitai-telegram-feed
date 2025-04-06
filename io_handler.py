@@ -13,9 +13,10 @@ def save_new_log(images: List[image.Image], username):
     new_log_json = create_log_json(images)
 
     try:
-        os.makedirs('logs', exist_ok=True)
+        logs_path = Path(__file__).parent / 'logs'
+        os.makedirs(logs_path, exist_ok=True)
         # Save file in logs directory
-        log_path = os.path.join('logs', file_name)
+        log_path = os.path.join(logs_path, file_name)
         with open(log_path, 'w', encoding='utf-8') as file:
             json.dump(new_log_json, file, indent=4)
     except IOError as e:
