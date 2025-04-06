@@ -11,7 +11,7 @@ def setup_cron():
         
         # Create the shell script
         shell_content = f'''#!/bin/bash
-python3 "../main.py"
+python3 "{main_script}"
 '''
         
         with open(shell_script, 'w') as f:
