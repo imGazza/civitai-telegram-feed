@@ -4,10 +4,12 @@ import image_comparison
 import telegram_integration as telegram
 import asyncio
 from config_reader import get_config
+from logger_config import logger
 
 config = get_config()
 
 async def main():
+    logger.info("Starting script execution")
     for username in config['users']:
 
         # Fetching data from CivitAi and the last save log
@@ -26,7 +28,7 @@ async def main():
         io.save_new_log(current_user_images, username)
 
 def fetch_data(username):
-    print(f'Fetching images for {username}')        
+    logger.info(f'Fetching images for {username}')
     current_user_images = civitai.retrieve_user_images(username)
     if not current_user_images:
         raise Exception("Error: something went wrong in retrieving data from CivitAI")

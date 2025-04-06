@@ -175,6 +175,7 @@ cython_debug/
 
 # Log folder
 /logs/
+/execution_logs/
 
 # Personal Tokens and configs
 /script_config.yaml

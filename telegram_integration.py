@@ -4,14 +4,15 @@ from model import image
 from datetime import datetime
 from config_reader import get_config
 from typing import List # Retrocompatibility with older versions of Python (Raspberry Pi 3.7)
+from logger_config import logger
 
 config = get_config()
 BOT = telegram.Bot(token=config['telegram']['bot_token'])
 
 async def send_images(images_to_notify: List[image.Image]):
-    print("Sending operation started")
+    logger.info("Sending operation started")
     await send_telegram_messages(images_to_notify)
-    print("Sending operation finished")    
+    logger.info("Sending operation finished")
 
 async def send_telegram_messages(images_to_notify):
     for image_to_send in images_to_notify:
@@ -46,9 +47,9 @@ async def send_single_message(image: image.Image, text_message, image_bytes):
             caption=text_message,
             parse_mode=telegram.constants.ParseMode.HTML
         )
-        print(f"Message correctly sent for image {image.id}")
+        logger.info(f"Message correctly sent for image {image.id}")
     except Exception as e:
-        print(f"Error sending message for image {image.id}: {e}")
+        logger.error(f"Error sending message for image {image.id}: {e}")
 
 def get_bot():
     bot = BOT
