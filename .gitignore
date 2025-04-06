@@ -177,4 +177,4 @@ cython_debug/
 /logs/
 
 # Personal Tokens and configs
-script_config.yaml
+/script_config.yaml
