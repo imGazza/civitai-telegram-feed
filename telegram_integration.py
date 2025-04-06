@@ -3,11 +3,12 @@ import requests
 from model import image
 from datetime import datetime
 from config_reader import get_config
+from typing import List # Retrocompatibility with older versions of Python (Raspberry Pi 3.7)
 
 config = get_config()
 BOT = telegram.Bot(token=config['telegram']['bot_token'])
 
-async def send_images(images_to_notify: list[image.Image]):
+async def send_images(images_to_notify: List[image.Image]):
     print("Sending operation started")
     await send_telegram_messages(images_to_notify)
     print("Sending operation finished")    

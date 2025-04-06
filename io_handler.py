@@ -3,8 +3,10 @@ from datetime import datetime
 from dataclasses import asdict
 import glob
 from model import image
+import os
+from typing import List # Retrocompatibility with older versions of Python (Raspberry Pi 3.7)
 
-def save_new_log(images: list[image.Image], username):
+def save_new_log(images: List[image.Image], username):
     timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
     file_name = f'{username}_{timestamp}.json'
 
@@ -21,7 +23,7 @@ def save_new_log(images: list[image.Image], username):
         if file_name and os.path.exists(file_name):
             os.remove(file_name)
 
-def create_log_json(images: list[image.Image]): 
+def create_log_json(images: List[image.Image]): 
     return {
         'images_ids': [image.id for image in images],
         'images': [asdict(image) for image in images]
