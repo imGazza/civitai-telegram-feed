@@ -12,5 +12,6 @@ telegram:
   chat_id: "xxxxxxxxx" # Your Telegram user ID, obtained from @RawDataBot on Telegram, needs to /start a conversation with your bot first
 
 users: # Users to monitor
+  - "imGazza"
   - "xxxxxxxxx"
   - "xxxxxxxxx"
